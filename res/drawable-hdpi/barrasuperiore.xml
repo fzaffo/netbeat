@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout 
+        android:id="@+id/LinearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/barra_menu_sopra"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/immagineNotifiche"
+            android:layout_width="40dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="7dp"
+            android:src="@drawable/notifiche" />
+
+        <ImageView
+            android:id="@+id/titoloNetBeat"
+            android:layout_width="240dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="2dp"
+            android:src="@drawable/netbeat" />
+
+        <ImageView
+            android:id="@+id/cd"
+            android:layout_width="40dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="7dp"
+            android:src="@drawable/cd" />
+    </LinearLayout>
+    </layer-list>

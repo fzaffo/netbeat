@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/sfondo"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/txtSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:fontFamily="sans-serif-thin"
+        android:text="netBeat"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="40dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/username"
+        style="@style/AppBaseTheme"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/edittext_background_login"
+        android:ems="10"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center|left"
+        android:hint="Username"
+        android:paddingLeft="5dp"
+        android:text="username1"
+        android:textColorHint="@color/scrittesuggerimentiEdittext" >
+
+    </EditText>
+
+    <EditText
+        android:id="@+id/password"
+        style="@style/AppBaseTheme"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/edittext_background_login"
+        android:ems="10"
+        android:fontFamily="sans-serif"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:paddingLeft="5dp"
+        android:text="password1"
+        android:textColorHint="@color/scrittesuggerimentiEdittext"
+        android:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/progressbar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/loading"
+        android:visibility="invisible" />
+    
+    <Button
+        android:id="@+id/controllo"
+        android:layout_width="200dp"
+        android:layout_height="35dp"
+        android:layout_alignLeft="@+id/password"
+        android:layout_alignRight="@+id/password"
+        android:layout_below="@+id/password"
+        android:background="@drawable/buttonbackground"
+        android:fontFamily="sans-serif-light"
+        android:text="Accedi"
+        android:textColor="#5c5c5c"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.2"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:minHeight="40dp"
+        android:text="Così non rimarrai connesso..."
+        android:textColor="#ffffff"
+        android:textSize="12dp" />
+
+    <TextView
+        android:id="@+id/registrati"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:minHeight="40dp"
+        android:shadowColor="#000000"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:text="Non sei registrato? Clicca qui!"
+        android:textColor="@color/scritteLoginReg"
+        android:textSize="10dp" />
+
+</LinearLayout>
+

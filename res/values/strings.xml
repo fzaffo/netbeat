@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">netBeat</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="stringa_upload_registra">Registratore</string>
+    <string name="stringa_upload_libreria">Musica personale</string>
+
+</resources>

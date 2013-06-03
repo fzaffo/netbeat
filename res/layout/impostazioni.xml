@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eeeeee"
+    android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/txtSettings"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/barra_menu_sopra"
+        android:gravity="center"
+        android:text="Impostazioni"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/check"
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:gravity="center_horizontal"
+        android:paddingTop="3dp"
+        android:text="Modifica"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#000000" />
+
+    <ScrollView
+        android:id="@+id/ScrollView01"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/bordi_upload"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/ButtonFotoProfilo"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="1dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/buttonbackground"
+                android:text="Foto Profilo" />
+
+            <Button
+                android:id="@+id/ButtonInvitaAmico"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:text="Invita Amico" />
+
+            <Button
+                android:id="@+id/ButtonBloccaPersona"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:text="Blocca Persona" />
+
+            <Button
+                android:id="@+id/ButtonEliminaCronologiaRicerca"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:text="Elimina Cronologia Ricerca" />
+
+            <Button
+                android:id="@+id/Button05"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:text="Button" />
+
+            <Button
+                android:id="@+id/Button06"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:text="Button" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp" >
+
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="270dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/barra_menu_sotto"
+            android:gravity="center"
+            android:text="Info NetBeat" />
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/barra_menu_sotto"
+            android:text="Log out" />
+
+    </LinearLayout>
+
+</LinearLayout>

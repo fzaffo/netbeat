@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/sfondologin"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/userInserito"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignLeft="@+id/passInserita1"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/passInserita1"
+        android:layout_marginTop="112dp"
+        android:background="@drawable/edittext_background_login"
+        android:ems="10"
+        android:hint="Username"
+        android:paddingLeft="5dp"
+        android:textColor="@color/scritteLoginReg"
+        android:textColorHint="@color/scrittesuggerimentiEdittext" />
+
+    <EditText
+        android:id="@+id/passInserita1"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignLeft="@+id/passInserita2"
+        android:layout_alignRight="@+id/passInserita2"
+        android:layout_below="@+id/userInserito"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/edittext_background_login"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:paddingLeft="5dp"
+        android:textColorHint="@color/scrittesuggerimentiEdittext" />
+
+    <Button
+        android:id="@+id/registrazione"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignLeft="@+id/passInserita2"
+        android:layout_alignRight="@+id/passInserita2"
+        android:layout_below="@+id/passInserita2"
+        android:layout_marginTop="103dp"
+        android:background="@drawable/buttonbackground"
+        android:text="Registrati"
+        android:textColor="#5c5c5c"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/passInserita2"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/passInserita1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/edittext_background_login"
+        android:ems="10"
+        android:hint="Reinserisci la password"
+        android:inputType="textPassword"
+        android:paddingLeft="5dp"
+        android:textColorHint="@color/scrittesuggerimentiEdittext" >
+
+        <requestFocus />
+    </EditText>
+
+</RelativeLayout>
