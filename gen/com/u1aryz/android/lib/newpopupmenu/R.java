@@ -18,6 +18,6 @@ public final class R {
 		public static final int popup_menu = 0x7f03000d;
 	}
 	public static final class drawable {
-		public static final int panel_background = 0x7f02002a;
+		public static final int panel_background = 0x7f02002b;
 	}
 }

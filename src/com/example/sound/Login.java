@@ -32,7 +32,7 @@ public class Login extends Activity implements OnClickListener{
 	Intent intentMainActivity;
 	TextView check;
 	TextView registrati;
-	Boolean partito = false;
+	Boolean memoryLog;
 	ImageView progressbar;
 	Animation animation;
 	
@@ -43,6 +43,12 @@ public class Login extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		Parse.initialize(this, "knDAr83ZUaOfuBIhOABDEBayycz2lwihKHxGfXkg", "pUsxmeRk5TfTSbx4dIoUYlMM6ZXA6VImBpaGWRyS");
 		intentMainActivity = new Intent(this, MainActivity.class);
+/*		ParseUser currentUser = ParseUser.getCurrentUser();
+		if(currentUser != null)
+		{
+			startActivity(intentMainActivity);
+    		overridePendingTransition(R.anim.fadein,R.anim.fadeout); 
+		}*/
 		intentRegistrazione = new Intent(this, Registrati.class);
 		setContentView(R.layout.login);
 		accedi = (Button) findViewById(R.id.controllo);
@@ -94,37 +100,27 @@ public class Login extends Activity implements OnClickListener{
 			progressbar.setAnimation(animation);
 			break;
 		case R.id.registrati:
-			username.setVisibility(View.INVISIBLE);
-			password.setVisibility(View.INVISIBLE);
-			check.setVisibility(View.INVISIBLE);
-			accedi.setVisibility(View.INVISIBLE);
-			registrati.setVisibility(View.INVISIBLE);
-			progressbar.setVisibility(View.VISIBLE);
-			progressbar.setAnimation(animation);
+			startActivity(intentRegistrazione);
 			break;
 		case R.id.check:
-			check.setText("Adesso rimarrai connesso...");
-			check.setAlpha(1);
-			check.setShadowLayer(10, 0, 0, Color.WHITE);
+			if(!memoryLog)
+			{
+				check.setText("Adesso rimarrai connesso");
+				check.setAlpha(1);
+				check.setShadowLayer(10, 0, 0, Color.WHITE);
+				memoryLog = true;
+			}
+			else
+			{
+				check.setText("Così non rimarrai connesso");
+				check.setAlpha((float) 0.2);
+				check.setShadowLayer(0, 0, 0, Color.WHITE);
+				memoryLog = false;
+			}
 			break;
 		
 	}
 }
-	
-	
-	
-	protected void startLoadingImg() {
-		Thread threadLoadingImg = new Thread() {
-			public void run() {
-				if(!partito)
-				{
-					//loading.setAnimation(animSet);
-					partito = true;
-				}
-			}
-		};
-		threadLoadingImg.start();
-	}
 
 }
 

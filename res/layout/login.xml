@@ -79,7 +79,7 @@
         android:fontFamily="sans-serif-light"
         android:gravity="center"
         android:minHeight="40dp"
-        android:text="Così non rimarrai connesso..."
+        android:text="Così non rimarrai connesso"
         android:textColor="#ffffff"
         android:textSize="12dp" />
 

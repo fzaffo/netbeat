@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.v4.app.Fragment;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
@@ -113,8 +114,7 @@ public class BarraInferiore extends LinearLayout implements OnClickListener, OnI
 		case 200:	//HomeIMG
 			Intent home_intent = new Intent(generalContext, MainActivity.class);
             generalContext.startActivity(home_intent);
-            
-			break;
+            break;
 		case 300:	//ProfileIMG
 			Intent profile_intent = new Intent(generalContext, Profilo.class);
 			profile_intent.putExtra("username", ParseUser.getCurrentUser().getUsername());

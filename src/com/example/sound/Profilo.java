@@ -1,15 +1,15 @@
 package com.example.sound;
 
 
-import java.util.List;
 
-import com.parse.FindCallback;
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
-import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -20,26 +20,22 @@ import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
-public class Profilo extends Activity implements OnClickListener  {
+public class Profilo extends Activity {
 	
-	Intent intentImgButtonImpostazioni;
-	Intent intentImgButtonCommenti;
-	Intent intentImgButtonLike;
+
 	Bitmap img;
+	ImageView frame;
 	LinearLayout info;
 	LinearLayout listOfPost;
 	Bitmap bitmapProfile;
 	BitmapDrawable bitmpaDrawableProfileBlur;
 	BitmapDrawable bitmapDrawableProfilePhoto;
 	ImageView imgProfile;
-	TextView settingsText;
 	TextView txtUsername;
 	Post post;
 	Context context;
@@ -48,90 +44,42 @@ public class Profilo extends Activity implements OnClickListener  {
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Parse.initialize(this, "knDAr83ZUaOfuBIhOABDEBayycz2lwihKHxGfXkg", "pUsxmeRk5TfTSbx4dIoUYlMM6ZXA6VImBpaGWRyS");
+		byte[] imgByte = null;
 		setContentView(R.layout.profilo);
 		bun = getIntent().getExtras();
 		context = this;
+		ParseObject user = (ParseObject) ParseUser.getCurrentUser();
+		ParseFile dbFile = (ParseFile) user.get("image");
+		try {
+			imgByte = dbFile.getData();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		img=BitmapFactory.decodeByteArray(imgByte,0,imgByte.length);
 		imgProfile = (ImageView) findViewById(R.id.imgProfile);
-		listOfPost = (LinearLayout) findViewById(R.id.linearLayoutPost);
-		img = BitmapFactory.decodeResource(this.getResources(),R.drawable.profilephoto);
-		bitmapProfile = BitmapFactory.decodeResource(this.getResources(),R.drawable.profilephoto);
-		intentImgButtonImpostazioni = new Intent(this, Impostazioni.class);
-		intentImgButtonCommenti = new Intent(this, Commenti.class);
-		intentImgButtonLike = new Intent(this, Like.class);
-		settingsText = (TextView) findViewById(R.id.txtSettings);
-		settingsText.setOnClickListener(this);
+		bitmapProfile = img;
+		bitmapProfile = addWhiteBorder(bitmapProfile,5);
+		bitmapDrawableProfilePhoto = new BitmapDrawable(getResources(),bitmapProfile);
+		imgProfile.setBackground(bitmapDrawableProfilePhoto);
 		txtUsername = (TextView) findViewById(R.id.txtUsername);
-		txtUsername.setText(bun.getCharSequence("username"));
-		//settingsText.setShadowLayer(1, 1, 1, Color.BLACK);
+		txtUsername.setText("#" + bun.getCharSequence("username"));
 		RenderScript rs = RenderScript.create( this );
 		Allocation input = Allocation.createFromBitmap( rs, img, Allocation.MipmapControl.MIPMAP_NONE, Allocation.USAGE_SCRIPT );
 		Allocation output = Allocation.createTyped( rs, input.getType() );
 		ScriptIntrinsicBlur script = ScriptIntrinsicBlur.create( rs, Element.U8_4( rs ) );
-		script.setRadius( (float) 20 /* e.g. 3.f */ );
+		script.setRadius( 20.f );
 		script.setInput( input );
 		script.forEach( output );
 		output.copyTo( img );
-		info = (LinearLayout) findViewById(R.id.principall);
-		img = processingBitmap_Brightness(img,50);
-		bitmapProfile = addWhiteBorder(bitmapProfile,3);
+		frame = (ImageView) findViewById(R.id.imageView1);
+		info = (LinearLayout) findViewById(R.id.princ);
+		img = processingBitmap_Brightness(img,40);
+		
 		bitmpaDrawableProfileBlur = new BitmapDrawable(getResources(),img);
-		info.setBackground(bitmpaDrawableProfileBlur);
-		bitmapDrawableProfilePhoto = new BitmapDrawable(getResources(),bitmapProfile);
-		imgProfile.setBackground(bitmapDrawableProfilePhoto);
-		getNumberOfPost();
-		createListOfPost();
+		frame.setImageDrawable(bitmpaDrawableProfileBlur);
 	}
-
-	
-	
-	
-	public void createListOfPost()  {
-		float n = (float) nElementi/10;	//10 is the number of post to vieww
-		Math.ceil(n);
-		for(int j = 0; j<n; j++)
-		{
-		ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Post");
-		query.setLimit(10);
-		query.setSkip(j*10);
-		query.include("user");
-		//query.whereEqualTo("username", "username8");
-		query.findInBackground(new FindCallback<ParseObject>() {		
-		    public void done(final List<ParseObject> postList, com.parse.ParseException e) {
-		        if (e == null) {
-		        	for (ParseObject currentPost : postList) {
-		        		post = new Post(context);
-		    			String IDPost = String.valueOf(currentPost.getObjectId()) ;
-		    	    	post.setContentDescription(IDPost);
-		    	    	listOfPost.addView(post);//,post.setParams_Margins(LayoutParams.MATCH_PARENT,120, 0, 0, 0, 0));
-		    	    	ParseObject user = currentPost.getParseObject("user");
-		    	    	String usernameString;
-		    	    	usernameString = user.getString("username");
-    	    	        post.createText(usernameString, currentPost.getString("description"), currentPost.getInt("duration"), currentPost.getObjectId());
-		    	    }
-		            //Log.d("score", "Retrieved " + scoreList.size() + " scores");
-		        }
-		    }
-		});
-		}
-	}
-	
-	public void getNumberOfPost() {
-		ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Post");
-		try {
-			nElementi = query.count();
-		} catch (com.parse.ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	private Bitmap addWhiteBorder(Bitmap bmp, int borderSize) {
@@ -183,19 +131,5 @@ public class Profilo extends Activity implements OnClickListener  {
 	     }
 	     return dest; 
 	    }
-	
-	
-	
-	@Override
-	public void onClick(View v) {
-		// TODO Auto-generated method stub
-
-		switch(v.getId()){
-		case R.id.txtSettings:
-			startActivity(intentImgButtonImpostazioni);			
-			break;
-		}
-		
-	}
 	
 }
